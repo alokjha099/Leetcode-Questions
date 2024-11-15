@@ -1,0 +1,88 @@
+question link ## https://leetcode.com/problems/jump-game/
+This Java code solves the Jump Game problem using a greedy algorithm. The task is to determine whether it is possible to jump from the first index to the last index of the array n. Each element in the array represents the maximum jump length from that position.
+
+Step-by-Step Explanation
+1. Initialize finalPosition
+java
+Copy code
+int finalPosition = n.length - 1;
+finalPosition represents the minimum index you need to reach to ultimately get to the last index of the array.
+Initially, it is set to the last index (n.length - 1) because that is our target.
+2. Traverse the Array from Right to Left
+java
+Copy code
+for (int i = n.length - 2; i >= 0; i--) {
+    if (i + n[i] >= finalPosition) {
+        finalPosition = i;
+    }
+}
+Start iterating from the second-to-last index (n.length - 2) to the beginning (i = 0).
+For each index i, check if you can jump from that position to or beyond finalPosition:
+i + n[i]: The maximum position you can reach from index i.
+If i + n[i] >= finalPosition, it means you can reach or surpass the current finalPosition from index i.
+Update finalPosition to i because you now only need to reach this new index.
+3. Check if You Can Reach the Start
+java
+Copy code
+return finalPosition == 0;
+After traversing the array, if finalPosition equals 0, it means you can jump from the first index to the last index.
+If not, return false because it is impossible to reach the last index.
+Example Walkthrough
+Input:
+java
+Copy code
+n = [2, 3, 1, 1, 4]
+Execution:
+Initialization:
+finalPosition = 4 (last index).
+
+Start Loop:
+
+i = 3: i + n[i] = 3 + 1 = 4
+4 >= finalPosition → Update finalPosition = 3.
+i = 2: i + n[i] = 2 + 1 = 3
+3 >= finalPosition → Update finalPosition = 2.
+i = 1: i + n[i] = 1 + 3 = 4
+4 >= finalPosition → Update finalPosition = 1.
+i = 0: i + n[i] = 0 + 2 = 2
+2 >= finalPosition → Update finalPosition = 0.
+Check finalPosition:
+
+finalPosition == 0, so return true.
+Output:
+java
+Copy code
+true
+Time Complexity
+The loop iterates through the array once → O(n).
+Space Complexity
+No extra space is used → O(1).
+Key Intuition
+The solution works by checking from right to left whether you can "reach" the target (starting from the last index). By moving the finalPosition backward whenever possible, we reduce the problem to checking if the first index can eventually reach this target position.
+
+Example Input and Output
+Example 1:
+Input:
+
+java
+Copy code
+n = [2, 3, 1, 1, 4]
+Output:
+
+java
+Copy code
+true
+Explanation: You can jump from index 0 -> 1 -> 4.
+
+Example 2:
+Input:
+
+java
+Copy code
+n = [3, 2, 1, 0, 4]
+Output:
+
+java
+Copy code
+false
+Explanation: You get stuck at index 3 because n[3] = 0 prevents further jumps.
