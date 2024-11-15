@@ -1,0 +1,98 @@
+question link ## https://leetcode.com/problems/rotate-array/
+
+This Java code solves the Rotate Array problem. It rotates the given array n to the right by k steps. The solution uses an in-place reversal algorithm for efficient space usage.
+
+Step-by-Step Explanation
+1. Normalize the Rotation Steps
+java
+Copy code
+int m = n.length;
+k = k % m;
+The length of the array is stored in m.
+If k is greater than the array length, performing k % m ensures the rotation is within bounds. For example, rotating a 5-element array by 7 steps is the same as rotating it by 7 % 5 = 2 steps.
+2. Reverse the Entire Array
+java
+Copy code
+reverse(n, 0, m - 1);
+The first step reverses the entire array.
+Example:
+Input: n = [1, 2, 3, 4, 5, 6, 7], k = 3
+After reversal: n = [7, 6, 5, 4, 3, 2, 1]
+3. Reverse the First k Elements
+java
+Copy code
+reverse(n, 0, k - 1);
+The second step reverses the first k elements in the reversed array.
+Example:
+After reversing the first k = 3 elements: n = [5, 6, 7, 4, 3, 2, 1]
+4. Reverse the Remaining Elements
+java
+Copy code
+reverse(n, k, m - 1);
+The third step reverses the elements from index k to the end of the array.
+Example:
+After reversing the remaining elements: n = [5, 6, 7, 1, 2, 3, 4]
+Helper Function: Reverse
+java
+Copy code
+public void reverse(int[] n, int s, int e) {
+    while (s <= e) {
+        int t = n[s];
+        n[s] = n[e];
+        n[e] = t;
+        s++;
+        e--;
+    }
+}
+This helper function reverses the subarray from index s (start) to e (end).
+Swaps the elements at s and e, then moves s forward and e backward until s > e.
+Key Intuition
+The array is rotated in three steps using the reversal method:
+
+Reverse the entire array.
+Reverse the first k elements.
+Reverse the remaining elements.
+This approach ensures the rotation is done in-place with O(1) space complexity and O(n) time complexity.
+
+Example Input and Output
+Example 1:
+Input:
+
+java
+Copy code
+n = [1, 2, 3, 4, 5, 6, 7], k = 3
+Execution:
+
+Reverse entire array: n = [7, 6, 5, 4, 3, 2, 1]
+Reverse first 3 elements: n = [5, 6, 7, 4, 3, 2, 1]
+Reverse remaining elements: n = [5, 6, 7, 1, 2, 3, 4]
+Output:
+
+java
+Copy code
+[5, 6, 7, 1, 2, 3, 4]
+Example 2:
+Input:
+
+java
+Copy code
+n = [1, 2], k = 3
+Execution:
+
+Normalize k: k = 3 % 2 = 1
+Reverse entire array: n = [2, 1]
+Reverse first k = 1 element: n = [2, 1]
+Reverse remaining elements: n = [2, 1]
+Output:
+
+java
+Copy code
+[2, 1]
+Time Complexity
+Reversals: Each reversal takes O(n) time.
+Total time complexity: O(n).
+Space Complexity
+No extra space is used apart from a few variables → O(1).
+Advantages of the Reversal Method
+Efficient for large arrays due to its in-place operation.
+Easy to implement with a helper function.
