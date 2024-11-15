@@ -1,0 +1,125 @@
+question link ## https://leetcode.com/problems/sort-colors/
+
+This Java code solves the Sort Colors problem using the Dutch National Flag algorithm. The problem requires sorting an array containing only 0, 1, and 2 such that all 0s come first, followed by all 1s, and then all 2s.
+
+Step-by-Step Explanation
+1. Initialize Pointers
+java
+Copy code
+int e = n.length - 1; // End pointer, tracks the position for placing 2s
+int s = 0;           // Start pointer, tracks the position for placing 0s
+int m = 0;           // Mid pointer, scans through the array
+s: Points to the position where the next 0 should be placed.
+e: Points to the position where the next 2 should be placed.
+m: Iterates through the array and determines where each element belongs.
+2. Iterate Through the Array
+java
+Copy code
+while (m <= e) {
+    switch (n[m]) {
+        case 0:
+            swap(n, s, m);
+            s++;
+            m++;
+            break;
+        case 1:
+            m++;
+            break;
+        case 2:
+            swap(n, m, e);
+            e--;
+            break;
+    }
+}
+The loop continues until m surpasses e.
+Switch Case Logic:
+Case 0:
+Swap n[m] with n[s] to place the 0 in its correct position at the start.
+Increment both s and m because the current position (m) now contains the next unsorted element, and s moves to the next available slot for 0.
+Case 1:
+Simply increment m because 1 is already in its correct position.
+Case 2:
+Swap n[m] with n[e] to place the 2 in its correct position at the end.
+Decrement e because the current position at the end now contains the next unsorted element. Do not increment m in this case, as the new element at m still needs to be processed.
+3. Helper Function: Swap
+java
+Copy code
+private void swap(int[] num, int p1, int p2) {
+    int temp = num[p1];
+    num[p1] = num[p2];
+    num[p2] = temp;
+}
+This function swaps two elements in the array at positions p1 and p2.
+Example Walkthrough
+Example 1:
+Input:
+
+java
+Copy code
+n = [2, 0, 2, 1, 1, 0]
+Execution:
+
+Initialization:
+s = 0, m = 0, e = 5
+
+First Pass (m = 0):
+n[m] = 2 → Swap n[m] with n[e] → n = [0, 0, 2, 1, 1, 2], e = 4, m = 0
+
+Second Pass (m = 0):
+n[m] = 0 → Swap n[m] with n[s] → n = [0, 0, 2, 1, 1, 2], s = 1, m = 1
+
+Third Pass (m = 1):
+n[m] = 0 → Swap n[m] with n[s] → n = [0, 0, 2, 1, 1, 2], s = 2, m = 2
+
+Fourth Pass (m = 2):
+n[m] = 2 → Swap n[m] with n[e] → n = [0, 0, 1, 1, 2, 2], e = 3, m = 2
+
+Fifth Pass (m = 2):
+n[m] = 1 → Increment m = 3
+
+Sixth Pass (m = 3):
+n[m] = 1 → Increment m = 4
+
+Output:
+
+java
+Copy code
+[0, 0, 1, 1, 2, 2]
+Time Complexity
+The array is traversed once → O(n).
+Space Complexity
+No extra space is used → O(1).
+Key Intuition
+The Dutch National Flag algorithm sorts the array in three passes:
+
+Move all 0s to the beginning.
+Leave 1s in place.
+Move all 2s to the end.
+The pointers (s, m, e) ensure that each part of the array is processed efficiently.
+
+Example Input and Output
+Example 1:
+Input:
+
+java
+Copy code
+n = [2, 0, 2, 1, 1, 0]
+Output:
+
+java
+Copy code
+[0, 0, 1, 1, 2, 2]
+Example 2:
+Input:
+
+java
+Copy code
+n = [2, 0, 1]
+Output:
+
+java
+Copy code
+[0, 1, 2]
+Code Readability
+This solution is concise, efficient, and solves the problem in linear time. It effectively uses the three-pointer technique to manage the sorting process.
+
