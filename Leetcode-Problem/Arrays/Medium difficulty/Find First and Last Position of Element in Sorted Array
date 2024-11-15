@@ -1,0 +1,90 @@
+question link ## https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+
+This Java code solves the problem of finding the first and last positions of a given target (t) in a sorted array (n). If the target is not found, it returns [-1, -1]. The solution uses two loops: one to find the first occurrence of the target and another to find the last occurrence.
+
+Step-by-Step Explanation
+1. Initialize Variables
+java
+Copy code
+int first = -1;
+int last = -1;
+first stores the index of the first occurrence of the target in the array.
+last stores the index of the last occurrence of the target in the array.
+Both are initialized to -1 to indicate that the target is not found.
+2. Find the First Occurrence
+java
+Copy code
+for (int i = 0; i < n.length; i++) {
+    if (n[i] == t) {
+        first = i;
+        break;
+    }
+}
+Iterate through the array from left to right (i = 0 to n.length - 1).
+When the target t is found at index i, store this index in first and exit the loop using break.
+If the loop completes without finding the target, first remains -1.
+Example: For n = [5, 7, 7, 8, 8, 10] and t = 8:
+
+Loop iterates over n and finds 8 at i = 3.
+first = 3 and the loop exits.
+3. Find the Last Occurrence
+java
+Copy code
+for (int j = n.length - 1; j >= 0; j--) {
+    if (n[j] == t) {
+        last = j;
+        break;
+    }
+}
+Iterate through the array from right to left (j = n.length - 1 to 0).
+When the target t is found at index j, store this index in last and exit the loop using break.
+If the loop completes without finding the target, last remains -1.
+Example: For n = [5, 7, 7, 8, 8, 10] and t = 8:
+
+Loop iterates over n in reverse and finds 8 at j = 4.
+last = 4 and the loop exits.
+4. Return the Result
+java
+Copy code
+return new int[]{first, last};
+Create a new integer array with two elements: first and last.
+Return the array as the result.
+Example Output: For n = [5, 7, 7, 8, 8, 10] and t = 8:
+
+first = 3
+last = 4
+Output: [3, 4]
+For n = [5, 7, 7, 8, 8, 10] and t = 6:
+
+first = -1
+last = -1
+Output: [-1, -1]
+Time Complexity
+First loop: Iterates through the array once → O(n).
+Second loop: Iterates through the array once → O(n).
+Overall time complexity: O(n).
+Space Complexity
+No extra space is used apart from the result array → O(1).
+Example Input and Output
+Example 1:
+Input:
+
+java
+Copy code
+n = [5, 7, 7, 8, 8, 10], t = 8
+Output:
+
+java
+Copy code
+[3, 4]
+Example 2:
+Input:
+
+java
+Copy code
+n = [5, 7, 7, 8, 8, 10], t = 6
+Output:
+
+java
+Copy code
+[-1, -1]
