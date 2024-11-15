@@ -1,0 +1,76 @@
+ question link ## https://leetcode.com/problems/product-of-array-except-self/ 
+
+
+
+Explanation of the Code
+This code implements the Product of Array Except Self problem in Java using two auxiliary arrays: left and right. Let's break it down step by step:
+
+Step 1: Initialize the Auxiliary Arrays
+left[]: Stores the cumulative product of elements to the left of the current index.
+Example: For nums = [1, 2, 3, 4], left = [1, 1, 2, 6].
+
+right[]: Stores the cumulative product of elements to the right of the current index.
+Example: For nums = [1, 2, 3, 4], right = [24, 12, 4, 1].
+
+Step 2: Fill the left Array
+java
+Copy code
+left[0] = 1; // No elements to the left of the first index, so set it to 1.
+for (int i = 1; i < nums.length; i++) {
+    left[i] = left[i - 1] * nums[i - 1];
+}
+Loop starts from i = 1 because the first index has no elements to the left.
+For each i, calculate left[i] as the product of left[i-1] and the element at nums[i-1].
+Example for nums = [1, 2, 3, 4]:
+
+left[0] = 1
+left[1] = left[0] * nums[0] = 1 * 1 = 1
+left[2] = left[1] * nums[1] = 1 * 2 = 2
+left[3] = left[2] * nums[2] = 2 * 3 = 6
+Final left[]: [1, 1, 2, 6].
+
+Step 3: Fill the right Array
+java
+Copy code
+right[nums.length - 1] = 1; // No elements to the right of the last index, so set it to 1.
+for (int i = nums.length - 2; i > -1; i--) {
+    right[i] = right[i + 1] * nums[i + 1];
+}
+Loop starts from the second-to-last index (nums.length - 2) because the last index has no elements to the right.
+For each i, calculate right[i] as the product of right[i+1] and the element at nums[i+1].
+Example for nums = [1, 2, 3, 4]:
+
+right[3] = 1
+right[2] = right[3] * nums[3] = 1 * 4 = 4
+right[1] = right[2] * nums[2] = 4 * 3 = 12
+right[0] = right[1] * nums[1] = 12 * 2 = 24
+Final right[]: [24, 12, 4, 1].
+
+Step 4: Calculate the Answer
+java
+Copy code
+for (int i = 0; i < nums.length; i++) {
+    ans[i] = left[i] * right[i];
+}
+Multiply corresponding values of left[i] and right[i] to get the result for index i.
+Example:
+
+ans[0] = left[0] * right[0] = 1 * 24 = 24
+ans[1] = left[1] * right[1] = 1 * 12 = 12
+ans[2] = left[2] * right[2] = 2 * 4 = 8
+ans[3] = left[3] * right[3] = 6 * 1 = 6
+Final ans[]: [24, 12, 8, 6].
+
+Step 5: Return the Answer
+The ans array, which contains the product of all elements except the current one for each index, is returned as the output.
+
+Optimizing the Code
+The solution can be further optimized to use only a single array (ans) by avoiding the explicit use of left and right arrays. However, this code clearly demonstrates the logic and is a great choice for understanding the concept.
+
+Example Input and Output
+For nums = [1, 2, 3, 4]:
+
+left = [1, 1, 2, 6]
+right = [24, 12, 4, 1]
+ans = [24, 12, 8, 6]
+Output: [24, 12, 8, 6].
