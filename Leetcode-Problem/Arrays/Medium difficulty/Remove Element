@@ -1,0 +1,22 @@
+https://leetcode.com/problems/remove-element/description/?envType=study-plan-v2&envId=top-interview-150
+
+QUESTION LINK 
+27. Remove Element 
+
+class Solution {
+    public int removeElement(int[] n, int val) {
+        int count=0;
+        for(int i=0;i<n.length;i++){
+            if(n[i]!=val){
+                n[count]=n[i];
+                count++;
+            }
+        }
+        return count;
+        
+    }
+}
+
+## this is one of the tricky questions where we are not only asked the count of value but after the count they will also check the n array and see if it has been 
+#updated to [2,2,_,_] variation and you only need to make sure first k element have non-val values and rest could be anyvalue dont edit it and it has to be done in the 
+# same array as well 
