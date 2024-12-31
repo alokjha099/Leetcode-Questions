@@ -1,0 +1,18 @@
+https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/?envType=study-plan-v2&envId=top-interview-150
+
+#QUESTION LINK
+
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i=0;
+        for(int n:nums){
+            if(i<2 || n!=nums[i-2]){
+                nums[i++]=n;
+            }
+        }
+        return i;
+    }
+}
+
+# In this question we might try diffent approch for example i tried to match n[i] with its past and forward value but it is a tidious approch instead we could try 
+# simply comparing i with i-2 as the i increases always i-2 will be the same if duplicates are too many 
