@@ -1,0 +1,23 @@
+https://leetcode.com/problems/majority-element/description/?envType=study-plan-v2&envId=top-interview-150
+
+#QUESTION LINK
+
+class Solution {
+    public int majorityElement(int[] n) {
+        int cand=0;
+        int count=0;
+        for(int i=0;i<n.length;i++){
+            if(count==0){
+                cand=n[i];
+            }if(cand==n[i]){
+                count++;
+            }else{
+                count--;
+            }
+        }
+        return cand;
+    }
+}
+#In this we take the first value and + the count if same value occurs again and minus the count if any other value occurs and if any value count hits 0 we switch next
+# value as the main count value and since we know more than half of the values are of the major element we will always find the major (this apprch might not have 
+worked if major is not more than half of the elements )
