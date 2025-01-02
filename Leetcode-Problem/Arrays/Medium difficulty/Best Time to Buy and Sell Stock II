@@ -1,0 +1,18 @@
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/description/?envType=study-plan-v2&envId=top-interview-150
+
+QUESTION LINK
+
+class Solution {
+    public int maxProfit(int[] n) {
+        int profit=0;
+        for(int i=1;i<n.length;i++){
+            if(n[i-1]<n[i]){
+                profit+=(n[i]-n[i-1]);
+            }
+        }
+        return profit;
+    }
+}
+
+# In this I was searching for the second iteration of the upward curve but we simply need to add all the iterations upward curves in a variable and return the total 
+profit in the end 
