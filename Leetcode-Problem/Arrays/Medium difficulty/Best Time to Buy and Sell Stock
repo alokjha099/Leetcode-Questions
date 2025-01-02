@@ -1,0 +1,19 @@
+https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/?envType=study-plan-v2&envId=top-interview-150
+
+QUESTION LINK
+
+class Solution {
+    public int maxProfit(int[] n) {
+        int maxprft=0;
+        int min=n[0];
+        for(int i=0;i<n.length;i++){
+             min=Math.min(n[i],min);
+            int pft=n[i]-min;
+            maxprft=Math.max(pft,maxprft);
+        }
+        return maxprft;
+    }
+}  
+
+# In this we measure the current and the next value note the minimum so far and find current curve profit and compare if with any of the past curve profits 
+A curve is created when i < i+1 
