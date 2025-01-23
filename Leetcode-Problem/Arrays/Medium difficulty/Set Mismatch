@@ -1,0 +1,29 @@
+https://leetcode.com/problems/set-mismatch/description/ 
+
+class Solution {
+    public int[] findErrorNums(int[] arr) {
+        int i=0;
+        while(i<arr.length){
+            int correct=arr[i]-1;
+            if(arr[i]!=arr[correct]){
+                swap(arr,i,correct);
+            }else{
+                i++;
+            }
+        }
+//        just find missing number
+        for (int j = 0; j < arr.length; j++) {
+            if(arr[j]!=j+1){
+                return new int[] {arr[j],j+1};
+            }
+        }
+
+        return new int[] {-1,-1};
+    }
+      void swap(int[] arr,int s,int e){
+        int temp=arr[s];
+        arr[s]=arr[e];
+        arr[e]=temp;
+    }
+} 
+# exactly similar to find N disappeared number in an array and cyclic sort study them you will understard it 
