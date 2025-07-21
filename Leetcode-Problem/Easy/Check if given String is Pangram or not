@@ -1,0 +1,21 @@
+
+static boolean checkPangram(String s) {
+
+        for(char ch = 'a'; ch <= 'z'; ch++) {
+            boolean found = false;
+
+            for(int i = 0; i < s.length(); i++) {
+                if(ch == Character.toLowerCase(s.charAt(i))) {
+                    found = true;
+                    break;
+                }
+            }
+            if(found == false)
+                return false;
+        }
+        return true;
+
+
+#######################################
+in character a adding will make it b and so till z character, use this property to traverse a to z char and find each character 
+in sentence by traversing the sentence for each character.
