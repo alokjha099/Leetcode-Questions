@@ -1,0 +1,20 @@
+https://leetcode.com/problems/count-items-matching-a-rule/description/
+
+class Solution {
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+        int attr= "type".equals(ruleKey)? 0 : ("color".equals(ruleKey)? 1:2);
+
+        int matchCount=0;
+
+        for(List<String> item: items){
+            if(item.get(attr).equals(ruleValue)){
+                matchCount++;
+            }
+        }
+
+        return matchCount;
+    }
+}  
+
+#################################
+use ternary operator for choosing the nested list value to choose , also check the nested Item and do increase matchCount
