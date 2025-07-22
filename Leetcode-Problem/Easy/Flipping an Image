@@ -1,0 +1,26 @@
+https://leetcode.com/problems/flipping-an-image/
+
+class Solution {
+    public int[][] flipAndInvertImage(int[][] image) {
+      for(int i=0;i<image.length;i++){
+          for(int j=0;j<image[i].length;j++){
+              if(image[i][j]==0){
+                  image[i][j]=1;
+              }else{
+                  image[i][j]=0;
+              }
+          }
+          int n=image[i].length;
+          for(int j=0;j<(n/2);j++){
+             int temp = image[i][j];
+                image[i][j] = image[i][n - 1 - j];
+                image[i][n - 1 - j] = temp;
+          }
+      }
+      return image;
+    }
+}
+
+
+########################################################33
+use swap by physically writing it here since it swap function takes by value. 
