@@ -1,0 +1,37 @@
+https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/description/
+
+
+class Solution {
+    public int oddCells(int m, int n, int[][] index) {
+       int[][] arr=new int[m][n];
+        int count=0;
+        for(int i=0;i<index.length;i++){
+            increment(m,n, index[i][0],index[i][1],arr);
+        }
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if ( arr[i][j] % 2 !=0 ){
+                    count++;
+                }
+            }
+
+        }
+
+        return count;
+ 
+    }
+
+   public  void increment(int m,int n, int indexRow, int indexColumn,int[][] index){
+        for (int j = 0; j < n; j++) {
+            index[indexRow][j]++;
+        }
+        for (int i = 0; i < m; i++) {
+            index[i][indexColumn]++;
+        }
+    }
+}
+
+#######################
+
+for incrementing iterate through i and put the rows and columns to increment into the increment function which 
+increment row wise and column wise taking the required parameters.
