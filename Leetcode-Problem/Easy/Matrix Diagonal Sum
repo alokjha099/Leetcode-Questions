@@ -1,0 +1,32 @@
+https://leetcode.com/problems/matrix-diagonal-sum/description/
+
+class Solution {
+    public int diagonalSum(int[][] mat) {
+         int h=mat.length-1;
+        int count=0;
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat.length; j++) {
+                if(i==j){
+                    count+=mat[i][j];
+                    break;
+                }
+            }
+
+            count+=mat[i][h];
+            h--;
+        }
+        if(mat.length%2!=0){
+            int m=mat.length/2;
+            count=count-mat[m][m];
+        }
+
+        return count;
+    }
+}
+
+
+#######################################
+
+added all the values into the count which are of i==j then noted the pattern mat[0->1->2->3->mat.len][mat.len->3->2->1] for the
+other diagonal and decrement h from mat.length and use i loop. for middle value appearing twise I deleted the middle value for 
+matrix having odd index
