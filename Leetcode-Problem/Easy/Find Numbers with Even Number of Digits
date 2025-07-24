@@ -1,0 +1,25 @@
+https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
+
+class Solution {
+    public int findNumbers(int[] nums) {
+        int count=0;
+        int isEven=0;
+        for (int i = 0; i < nums.length; i++) {
+            while(nums[i]!=0){
+                nums[i]=nums[i]/10;
+                count++;
+            }
+            if(count % 2==0){
+                isEven++;
+                
+            }
+            count=0;
+        }
+        return isEven;
+    }
+}
+
+#################################################
+
+divide each number by 0 and increment count later see if its even or odd make sure you readjust count to 0 as will be 
+otherwise problematic
