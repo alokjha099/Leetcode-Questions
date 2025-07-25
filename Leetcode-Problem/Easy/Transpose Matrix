@@ -1,0 +1,35 @@
+https://leetcode.com/problems/transpose-matrix/
+
+
+
+class Solution {
+    public int[][] transpose(int[][] matrix) {
+        // 'rows' is the number of rows in the input matrix
+        int rows = matrix.length;
+        // 'cols' is the number of columns in the input matrix which is derived from the first row
+        int cols = matrix[0].length;
+      
+        // 'transposedMatrix' is the transposed matrix where the rows and columns are swapped
+        int[][] transposedMatrix = new int[cols][rows];
+      
+        // Iterate over each column of the transposed matrix
+        for (int i = 0; i < cols; i++) {
+            // Iterate over each row of the transposed matrix
+            for (int j = 0; j < rows; j++) {
+                // Assign the value from the original matrix to the correct position in the transposed matrix
+                transposedMatrix[i][j] = matrix[j][i];
+            }
+        }
+        // Return the transposed matrix
+        return transposedMatrix;
+    }
+}
+
+
+
+
+
+################################################
+
+rows and col are reversed for i and j because transpose will have rows=col of the transposed matrix, and we swap the 
+values of the matrix cause thats what effectively change (its a patter of transpose)
