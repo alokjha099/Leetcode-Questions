@@ -1,0 +1,33 @@
+https://leetcode.com/problems/maximum-population-year/description/
+
+
+class Solution {
+    public int maximumPopulation(int[][] logs) {
+        int[] arr=new int[101];
+        for(int i=0;i<logs.length;i++){
+            for(int j=logs[i][0];j<logs[i][1];j++){
+                arr[j - 1950]++;
+            }
+        }
+        int max=0;
+        int maxYear=1950;
+        for(int i=0;i<101;i++){
+            if(max<arr[i]){
+                max=arr[i];
+                maxYear=i+1950;
+            }
+        }
+        return maxYear;
+    }
+}
+
+#######################################################
+
+Constraints:
+
+1 <= logs.length <= 100
+1950 <= birthi < deathi <= 2050
+
+looking at constraint we know array birth and death will be between 1950-2050 which is 101 run 2 loop first iterating logs
+second runnig from birth to death-1 adding 1 for each value in that range , then run the loop to find the maximum of the array
+and add index+1950 to get that respective maximum year.
