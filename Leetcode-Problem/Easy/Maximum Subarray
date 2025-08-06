@@ -1,5 +1,8 @@
 https://leetcode.com/problems/maximum-subarray/
 
+######################################################
+BRUTE FORCE APPROCH
+######################################################
 
 public static int maxSubarraySum(int[] arr) {
         int maxi = Integer.MIN_VALUE; // maximum sum\
@@ -34,3 +37,45 @@ k: Goes from i to j to calculate the actual sum of the current subarray.
 The outer two loops (i, j) generate all possible subarrays.
 
 The innermost loop (k) is needed to calculate the sum of each subarray.
+
+
+######################################################
+OPTIMISED APPROCH
+######################################################
+
+https://leetcode.com/problems/maximum-subarray/
+
+
+class Solution {
+    public int maxSubArray(int[] arr) {
+         int maxi = Integer.MIN_VALUE; // maximum sum
+        int sum = 0;
+        int n=arr.length;
+
+
+        for (int i = 0; i < n; i++) {
+
+            sum += arr[i];
+
+            if (sum > maxi) {
+                maxi = sum;
+            }
+
+            // If sum < 0: discard the sum calculated
+            if (sum < 0) {
+                sum = 0;
+            }
+        }
+
+        // To consider the sum of the empty subarray
+        // uncomment the following check:
+
+        //if (maxi < 0) maxi = 0;
+
+        return maxi;
+    }
+}
+
+##########################################################
+iterate once check if sum is greater than 0 if not, readjust sum to 0 and if sum now is greater than previous sum  
+than replace max to the current one .
