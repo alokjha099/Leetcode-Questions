@@ -1,0 +1,22 @@
+
+https://leetcode.com/problems/plus-one/submissions/1730300273/
+
+class Solution {
+    public int[] plusOne(int[] d) {
+        int n=d.length;
+        for(int i=n-1;i>=0;i--){
+            if(d[i]<9){
+                d[i]++;
+                return d;
+            }
+            d[i]=0;
+        }
+        int[] arr=new int[n+1];
+        arr[0]=1;
+        return arr;
+    }
+}
+
+################################################
+
+if less than 9 it will be increased. if 9999 then all 0000 new arr will have 10000. 
